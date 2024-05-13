@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FastProudSearch</string>
+    <string name="search_hint">Ürün Ara</string>
+    <string name="search_button_description">Ürün Ara</string>
+</resources>
