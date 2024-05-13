@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FastProudSearch</string>
-    <string name="search_hint">Serach Product</string>
+    <string name="search_hint">Search Product</string>
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
 </resources>
