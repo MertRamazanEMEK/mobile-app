@@ -27,5 +27,16 @@
         android:layout_centerHorizontal="true"
         android:text="Ara"
         android:id="@+id/searchButton"/>
-
+    <ImageButton
+        android:id="@+id/settingsIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_settings"/>
+    <ImageButton
+        android:id="@+id/favoritesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <!-- android:src="@drawable/ic_favorite" app:layout_constraintBottom_toTopOf="@id/settingsButton"-->
 </RelativeLayout>
