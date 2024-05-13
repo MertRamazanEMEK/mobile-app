@@ -76,6 +76,12 @@
             android:layout_gravity="end"
             android:text="Ara"
             android:id="@+id/searchButton"/>
+        <ImageButton
+            android:id="@+id/settingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_settings" />
     </LinearLayout>
 
 </RelativeLayout>
