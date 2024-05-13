@@ -3,4 +3,6 @@
     <string name="search_hint">Serach Product</string>
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
+    <string name="settings_description">Settings</string>
+    <string name="favorite_description">Favorite</string>
 </resources>
