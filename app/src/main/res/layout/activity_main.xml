@@ -1,41 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-
+    <!-- Giriş Ekranı -->
     <LinearLayout
+        android:id="@+id/login_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"  android:layout_weight="1"  android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <Space
+        <!-- Kullanıcı Adı Girişi -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp" />  <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"  android:hint="Ürün Ara">
+            android:layout_height="wrap_content"
+            android:hint="Kullanıcı Adı">
 
-        <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/usernameEditText"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Şifre Girişi -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:hint="@string/search_hint" />
+            android:layout_height="wrap_content"
+            android:hint="Şifre">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/passwordEditText"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <!-- Giriş Butonu -->
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="105dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/search_button_description"
-            app:backgroundTint="@color/colorPrimary"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/ic_search" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Giriş Yap"
+            android:id="@+id/loginButton"/>
     </LinearLayout>
 
+    <!-- Ürün Arama Ekranı -->
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-</LinearLayout>
+        <!-- Ürün Arama TextInputLayout -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ürün Ara">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_hint" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Arama Butonu -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Ara"
+            android:id="@+id/searchButton"/>
+    </LinearLayout>
+
+</RelativeLayout>
