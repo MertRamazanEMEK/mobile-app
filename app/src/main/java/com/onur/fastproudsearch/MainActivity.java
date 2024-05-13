@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Ayarlar butonuna tıklandığında yapılacak işlemler buraya yazılır
                 Toast.makeText(MainActivity.this, "Ayarlar butonuna tıklandı", Toast.LENGTH_SHORT).show();
+
             }
         });
 
