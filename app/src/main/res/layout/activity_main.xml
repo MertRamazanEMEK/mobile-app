@@ -27,16 +27,40 @@
         android:layout_centerHorizontal="true"
         android:text="Ara"
         android:id="@+id/searchButton"/>
-    <ImageButton
-        android:id="@+id/settingsIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_settings"/>
-    <ImageButton
-        android:id="@+id/favoritesButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:padding="16dp"
+        tools:context=".MainActivity">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="bottom" />
+
+        <ImageButton
+            android:id="@+id/settingsButton"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_settings" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="bottom" />
+
+        <ImageButton
+            android:id="@+id/favoritesButton"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favorite" />
+
+    </LinearLayout>
+
     <!-- android:src="@drawable/ic_favorite" app:layout_constraintBottom_toTopOf="@id/settingsButton"-->
 </RelativeLayout>
