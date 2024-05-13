@@ -3,15 +3,16 @@ package com.onur.fastproudsearch;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
-import com.onur.fastproudsearch.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout searchTextInputLayout;
     private Button searchButton;
+    private ImageButton settingsButton, favoritesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +22,32 @@ public class MainActivity extends AppCompatActivity {
         // XML'den görünümleri al
         searchTextInputLayout = findViewById(R.id.searchTextInputLayout);
         searchButton = findViewById(R.id.searchButton);
+        settingsButton = findViewById(R.id.settingsButton);
+        favoritesButton = findViewById(R.id.favoritesButton);
 
         // Arama butonuna tıklama işlemi ekle
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 performSearch();
+            }
+        });
+
+        // Ayarlar butonuna tıklama işlemi ekle
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ayarlar butonuna tıklandığında yapılacak işlemler buraya yazılır
+                Toast.makeText(MainActivity.this, "Ayarlar butonuna tıklandı", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Favoriler butonuna tıklama işlemi ekle
+        favoritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Favoriler butonuna tıklandığında yapılacak işlemler buraya yazılır
+                Toast.makeText(MainActivity.this, "Favoriler butonuna tıklandı", Toast.LENGTH_SHORT).show();
             }
         });
     }
