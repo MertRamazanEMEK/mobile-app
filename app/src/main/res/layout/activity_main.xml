@@ -10,7 +10,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ürün Ara"
+        android:hint="@string/search_hint"
         android:id="@+id/searchTextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -46,7 +46,8 @@
             android:id="@+id/settingsButton"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_settings" />
+            android:src="@drawable/ic_settings"
+            android:contentDescription="TODO" />
 
         <View
             android:layout_width="0dp"
