@@ -1,67 +1,50 @@
 package com.onur.fastproudsearch;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.textfield.TextInputLayout;
+import com.onur.fastproudsearch.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText usernameEditText, passwordEditText;
-    private Button loginButton, searchButton;
-    private LinearLayout loginLayout, searchLayout;
+    private TextInputLayout searchTextInputLayout;
+    private Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // XML dosyasındaki bileşenleri Java değişkenlerine atama
-        usernameEditText = findViewById(R.id.usernameEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
-        loginButton = findViewById(R.id.loginButton);
+        // XML'den görünümleri al
+        searchTextInputLayout = findViewById(R.id.searchTextInputLayout);
         searchButton = findViewById(R.id.searchButton);
-        loginLayout = findViewById(R.id.login_layout);
-        searchLayout = findViewById(R.id.search_layout);
 
-        // Giriş butonuna tıklama işlemi
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Kullanıcı adı ve şifre kontrolü
-                String username = usernameEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
-
-                // Burada gerçek bir kimlik doğrulama yapılabilir, şimdilik basit bir kontrol sağlıyoruz
-                if (!username.isEmpty() && !password.isEmpty()) {
-                    // Giriş başarılıysa, ürün arama ekranını göster
-                    showSearchScreen();
-                } else {
-                    // Giriş başarısızsa, kullanıcıya uygun bir mesaj gösterebilirsiniz
-                    // Burada sadece basit bir Toast mesajı gösteriyoruz
-                    Toast.makeText(MainActivity.this, "Lütfen kullanıcı adı ve şifre girin", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        // Ürün arama butonuna tıklama işlemi
+        // Arama butonuna tıklama işlemi ekle
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Ürün arama işlemi gerçekleştirilebilir
-                // Burada sadece örneğin ekranı temizliyoruz
-                Toast.makeText(MainActivity.this, "Ürün arama işlemi gerçekleştirilecek", Toast.LENGTH_SHORT).show();
+                performSearch();
             }
         });
     }
 
-    // Ürün arama ekranını gösteren metod
-    private void showSearchScreen() {
-        loginLayout.setVisibility(View.GONE); // Giriş ekranını gizle
-        searchLayout.setVisibility(View.VISIBLE); // Ürün arama ekranını göster
+    private void performSearch() {
+        // Burada yapılacak olan ürün arama işlemi kodlanır
+        // Örnek olarak, şu anda sadece bir Toast mesajı gösteriyoruz
+        String searchQuery = searchTextInputLayout.getEditText().getText().toString().trim();
+        if (!searchQuery.isEmpty()) {
+            // Ürün arama işlemi gerçekleştirilir
+            // searchProduct(searchQuery);
+            Toast.makeText(MainActivity.this, "Aranan ürün: " + searchQuery, Toast.LENGTH_SHORT).show();
+        } else {
+            // Kullanıcı bir şey aramadan arama butonuna tıklarsa bir uyarı gösterilir
+            Toast.makeText(MainActivity.this, "Lütfen bir ürün adı girin", Toast.LENGTH_SHORT).show();
+        }
     }
+
+    // Ürün arama metodunu buraya ekleyebilirsiniz
+    // private void searchProduct(String query) { ... }
 }

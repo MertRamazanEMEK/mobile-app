@@ -32,15 +32,14 @@ public class LoginActivity extends AppCompatActivity {
                 String username = usernameEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
 
-                // Burada gerçek bir kimlik doğrulama yapılabilir, şimdilik basit bir kontrol sağlıyoruz
+                // Kullanıcı adı ve şifre boş değilse devam et
                 if (!username.isEmpty() && !password.isEmpty()) {
-                    // Giriş başarılıysa, ana aktiviteye geçiş yapabilirsiniz
-                    // Burada örnek olarak LoginActivity'den MainActivity'e geçiş yapılıyor
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    // MainActivity'e geçiş yapmak için Intent oluştur
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent); // MainActivity'e geçiş yap
                     finish(); // LoginActivity'i kapat
                 } else {
-                    // Giriş başarısızsa, kullanıcıya uygun bir mesaj gösterebilirsiniz
-                    // Burada sadece basit bir Toast mesajı gösteriyoruz
+                    // Kullanıcıya uygun bir mesaj göster
                     Toast.makeText(LoginActivity.this, "Lütfen kullanıcı adı ve şifre girin", Toast.LENGTH_SHORT).show();
                 }
             }
