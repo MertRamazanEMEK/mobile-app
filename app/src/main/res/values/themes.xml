@@ -1,9 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.FastProudSearch" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <!-- Açık tema -->
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
+        <!-- ActionBar -->
+        <item name="colorPrimary">@color/colorPrimaryLight</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkLight</item>
+        <item name="colorAccent">@color/colorAccentLight</item>
+        <!-- Diğer özellikler -->
+        <!-- ... -->
     </style>
 
-    <style name="Theme.FastProudSearch" parent="Base.Theme.FastProudSearch" />
 </resources>

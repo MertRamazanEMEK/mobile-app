@@ -1,5 +1,6 @@
 package com.onur.fastproudsearch;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -15,6 +16,21 @@ public class FavoriteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int nightModeFlags =
+                getResources().getConfiguration().uiMode &
+                        Configuration.UI_MODE_NIGHT_MASK;
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                // Cihaz karanlık modda, karanlık tema kullanılmalı
+                setTheme(R.style.AppTheme_Dark);
+                break;
+
+            case Configuration.UI_MODE_NIGHT_NO:
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                // Cihaz açık temada, varsayılan tema kullanılmalı
+                setTheme(R.style.AppTheme_Light);
+                break;
+        }
         setContentView(R.layout.activity_favorite);
 
         // Favori ürünlerin listesi
@@ -30,6 +46,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
         // Favori ürünlerin listesini gösterme işlemi
         displayFavoriteItems();
+
     }
 
     // Favori ürünlerin listesini gösterme metodu
