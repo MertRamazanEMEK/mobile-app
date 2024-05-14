@@ -6,4 +6,5 @@
     <string name="password">Şifre</string>
     <string name="settings_description">Ayarlar</string>
     <string name="favorite_description">Favoriler</string>
+    <string name="search">Ara</string>
 </resources>

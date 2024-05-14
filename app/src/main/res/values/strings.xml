@@ -10,4 +10,5 @@
             <item>Türkçe</item>
             <item>Deutsch</item>
         </string-array>
+    <string name="search">Search</string>
 </resources>
