@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Favoriler butonuna tıklandığında yapılacak işlemler buraya yazılır
                 Toast.makeText(MainActivity.this, "Favoriler butonuna tıklandı", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
+                startActivity(intent); // MainActivity'e geçiş yap
+                finish(); // LoginActivity'i kapat
             }
         });
     }

@@ -18,6 +18,10 @@
             android:theme="@style/Theme.Design.NoActionBar"
             android:exported="false" />
         <activity
+            android:name=".FavoriteActivity"
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.Design.NoActionBar"
             android:exported="false" />
