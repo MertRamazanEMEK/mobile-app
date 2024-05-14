@@ -23,22 +23,11 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        int nightModeFlags =
-                getResources().getConfiguration().uiMode &
-                        Configuration.UI_MODE_NIGHT_MASK;
-        switch (nightModeFlags) {
-            case Configuration.UI_MODE_NIGHT_YES:
-                // Cihaz karanlık modda, karanlık tema kullanılmalı
-                setTheme(R.style.AppTheme_Dark);
-                break;
 
-            case Configuration.UI_MODE_NIGHT_NO:
-            case Configuration.UI_MODE_NIGHT_UNDEFINED:
-                // Cihaz açık temada, varsayılan tema kullanılmalı
-                setTheme(R.style.AppTheme_Light);
-                break;
-        }
+        // Tema ayarlarını kontrol et
+        checkTheme();
+
+        setContentView(R.layout.activity_settings);
         themeSwitch = findViewById(R.id.themeSwitch);
         backButton = findViewById(R.id.backButton);
         languageSpinner = findViewById(R.id.languageSpinner);
@@ -76,36 +65,54 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        // Tema anahtarının durum değişikliğini dinleme
+        // Tema anahtarının durumunu kontrol et ve ayarla
+        boolean darkThemeEnabled = getThemeState();
+        themeSwitch.setChecked(darkThemeEnabled);
+        if (darkThemeEnabled) {
+            // Eğer karanlık tema açıksa karanlık modu etkinleştir
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            // Aksi halde açık modu etkinleştir
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        // Tema anahtarının değişikliklerini dinleme
         themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // Tema değişikliği işlemleri
                 if (isChecked) {
                     // Eğer anahtar işaretliyse, karanlık tema kullan
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    saveThemeState(true); // Tema durumunu kaydetme
+                    setThemeState(true); // Tema durumunu kaydetme
                 } else {
                     // Eğer anahtar işaretli değilse, açık tema kullan
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    saveThemeState(false); // Tema durumunu kaydetme
+                    setThemeState(false); // Tema durumunu kaydetme
                 }
                 recreate(); // Yeniden oluşturma işlemi, tema değişikliğinin etkisini hemen göstermek için
             }
         });
+    }
 
-        // Kaydedilmiş tema durumunu kontrol etme ve uygulama
-        boolean darkThemeEnabled = getThemeState();
-        themeSwitch.setChecked(darkThemeEnabled);
-        if (darkThemeEnabled) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+    // Tema durumunu kontrol et
+    private void checkTheme() {
+        int nightModeFlags = getResources().getConfiguration().uiMode &
+                Configuration.UI_MODE_NIGHT_MASK;
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                // Cihaz karanlık modda, karanlık tema kullanılmalı
+                setTheme(R.style.AppTheme_Dark);
+                break;
+            case Configuration.UI_MODE_NIGHT_NO:
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                // Cihaz açık temada, varsayılan tema kullanılmalı
+                setTheme(R.style.AppTheme_Light);
+                break;
         }
     }
 
     // Tema durumunu kaydetmek için yardımcı metot
-    private void saveThemeState(boolean darkThemeEnabled) {
+    private void setThemeState(boolean darkThemeEnabled) {
         SharedPreferences.Editor editor = getSharedPreferences("settings", MODE_PRIVATE).edit();
         editor.putBoolean("darkTheme", darkThemeEnabled);
         editor.apply();

@@ -2,10 +2,11 @@
     <!-- Açık tema -->
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
         <!-- ActionBar -->
-        <item name="colorPrimary">@color/colorPrimaryLight</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkLight</item>
-        <item name="colorAccent">@color/colorAccentLight</item>
+        <item name="colorPrimary">@color/colorPrimaryLight</item> <!-- Açık ana renk -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkLight</item> <!-- Açık ana renk (daha koyu ton) -->
+        <item name="colorAccent">@color/colorAccentLight</item> <!-- Açık vurgu rengi -->
         <!-- Diğer özellikler -->
+
         <!-- ... -->
     </style>
 
