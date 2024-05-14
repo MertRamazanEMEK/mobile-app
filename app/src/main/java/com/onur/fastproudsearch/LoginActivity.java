@@ -8,11 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameEditText, passwordEditText;
-    private Button loginButton;
+    private Button loginButton, signupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
+        signupButton = findViewById(R.id.signupButton);
 
         // Giriş butonuna tıklama işlemi
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +42,16 @@ public class LoginActivity extends AppCompatActivity {
                     // Kullanıcıya uygun bir mesaj göster
                     Toast.makeText(LoginActivity.this, "Lütfen kullanıcı adı ve şifre girin", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        // Kaydol butonuna tıklama işlemi
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // SignupActivity'e geçiş yapmak için Intent oluştur
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent); // SignupActivity'e geçiş yap
             }
         });
     }

@@ -8,40 +8,49 @@
 
     <!-- Kullanıcı Adı Girişi -->
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernameTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/user_name"
-        android:id="@+id/usernameTextInputLayout">
+        android:hint="@string/user_name">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/usernameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:id="@+id/usernameEditText"/>
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Şifre Girişi -->
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/usernameTextInputLayout"
-        android:hint="@string/password"
-        android:id="@+id/passwordTextInputLayout">
+        android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/passwordEditText"/>
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Giriş Butonu -->
     <Button
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordTextInputLayout"
         android:layout_centerHorizontal="true"
-        android:text="Giriş Yap"
-        android:id="@+id/loginButton"/>
+        android:text="Giriş Yap" />
+
+    <!-- Kaydolma Butonu -->
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:text="Kaydol" />
 
 </RelativeLayout>
