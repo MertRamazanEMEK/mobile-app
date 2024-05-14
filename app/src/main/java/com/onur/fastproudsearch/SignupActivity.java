@@ -1,7 +1,6 @@
 package com.onur.fastproudsearch;
 
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -18,12 +17,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
+import java.util.Objects;
+
 public class SignupActivity extends AppCompatActivity {
 
     private TextInputLayout usernameTextInputLayout, passwordTextInputLayout;
     private TextInputEditText usernameEditText, passwordEditText;
-    private Button signupButton;
-    private boolean passwordVisible = false;
 
     private FirebaseAuth mAuth;
 
@@ -38,7 +37,7 @@ public class SignupActivity extends AppCompatActivity {
         passwordTextInputLayout = findViewById(R.id.passwordTextInputLayout);
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
-        signupButton = findViewById(R.id.signupButton);
+        Button signupButton = findViewById(R.id.signupButton);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,33 +45,11 @@ public class SignupActivity extends AppCompatActivity {
                 signUp();
             }
         });
-
-        // PasswordEditText'te göz simgesine tıklanıldığında işlevi ekleme
-        passwordTextInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                togglePasswordVisibility();
-            }
-        });
-    }
-
-    private void togglePasswordVisibility() {
-        if (passwordVisible) {
-            // Gizliyse, görünür yap
-            passwordEditText.setTransformationMethod(null);
-            passwordVisible = false;
-            passwordTextInputLayout.setEndIconDrawable(R.drawable.ic_visibility_off);
-        } else {
-            // Görünürse, gizle
-            passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
-            passwordVisible = true;
-            passwordTextInputLayout.setEndIconDrawable(R.drawable.ic_visibility_on);
-        }
     }
 
     private void signUp() {
-        String username = usernameEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
+        String username = Objects.requireNonNull(usernameEditText.getText()).toString().trim();
+        String password = Objects.requireNonNull(passwordEditText.getText()).toString().trim();
 
         if (username.isEmpty()) {
             usernameTextInputLayout.setError("Kullanıcı adı boş olamaz.");
@@ -104,7 +81,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                 if (task.isSuccessful()) {
                     SignInMethodQueryResult result = task.getResult();
-                    if (result.getSignInMethods().isEmpty()) {
+                    if (Objects.requireNonNull(result.getSignInMethods()).isEmpty()) {
                         // Kullanıcı Firebase'de kayıtlı değilse, kaydı gerçekleştir
                         mAuth.createUserWithEmailAndPassword(username, password)
                                 .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
@@ -117,7 +94,7 @@ public class SignupActivity extends AppCompatActivity {
                                             // Burada isterseniz başka bir aktiviteye geçiş yapabilirsiniz.
                                         } else {
                                             // Kayıt başarısız
-                                            Toast.makeText(SignupActivity.this, "Kayıt başarısız. Hata: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SignupActivity.this, "Kayıt başarısız. Hata: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -127,7 +104,7 @@ public class SignupActivity extends AppCompatActivity {
                     }
                 } else {
                     // Kullanıcı sorgusu başarısız oldu
-                    Toast.makeText(SignupActivity.this, "Kullanıcı sorgusu başarısız oldu. Hata: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this, "Kullanıcı sorgusu başarısız oldu. Hata: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
