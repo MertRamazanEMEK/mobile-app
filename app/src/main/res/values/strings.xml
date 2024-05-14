@@ -5,4 +5,8 @@
     <string name="password">Password</string>
     <string name="settings_description">Settings</string>
     <string name="favorite_description">Favorite</string>
+        <string-array name="language_options">
+            <item>Türkçe</item>
+            <item>Deutsch</item>
+        </string-array>
 </resources>

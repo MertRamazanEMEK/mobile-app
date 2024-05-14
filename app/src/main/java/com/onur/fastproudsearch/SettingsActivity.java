@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Toast;
+import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
@@ -15,6 +17,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private SwitchCompat themeSwitch;
     private Button backButton;
+    private Spinner languageSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,29 @@ public class SettingsActivity extends AppCompatActivity {
 
         themeSwitch = findViewById(R.id.themeSwitch);
         backButton = findViewById(R.id.backButton);
+        languageSpinner = findViewById(R.id.languageSpinner);
+
+        // Set up the language options
+        String[] languageOptions = getResources().getStringArray(R.array.language_options);
+        ArrayAdapter<String> languageAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, languageOptions);
+        languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languageSpinner.setAdapter(languageAdapter);
+
+        // Handle language spinner selection changes (optional)
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Handle selected language here (e.g., save preference)
+                String selectedLanguage = languageOptions[position];
+                // Implement logic to handle chosen language (e.g., update UI, store preference)
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing here or handle if no selection is made
+            }
+        });
 
         // Geri butonuna tıklama dinleyicisi ekleme
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     saveThemeState(false); // Tema durumunu kaydetme
                 }
+                recreate(); // Yeniden oluşturma işlemi, tema değişikliğinin etkisini hemen göstermek için
             }
         });
 
