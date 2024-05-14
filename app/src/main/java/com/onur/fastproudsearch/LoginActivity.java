@@ -18,6 +18,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        initComponents();
+        registerEventHandler();
+
         int nightModeFlags =
                 getResources().getConfiguration().uiMode &
                         Configuration.UI_MODE_NIGHT_MASK;
@@ -33,13 +37,17 @@ public class LoginActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_Light);
                 break;
         }
+    }
 
+    private void initComponents(){
         // XML dosyasındaki bileşenleri Java değişkenlerine atama
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         signupButton = findViewById(R.id.signupButton);
+    }
 
+    private void registerEventHandler(){
         // Giriş butonuna tıklama işlemi
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

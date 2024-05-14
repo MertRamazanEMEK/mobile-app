@@ -23,15 +23,33 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+
+        initComponents();
+        registerEventHandler();
 
         // Tema ayarlarını kontrol et
         checkTheme();
 
-        setContentView(R.layout.activity_settings);
+        // Tema anahtarının durumunu kontrol et ve ayarla
+        boolean darkThemeEnabled = getThemeState();
+        themeSwitch.setChecked(darkThemeEnabled);
+        if (darkThemeEnabled) {
+            // Eğer karanlık tema açıksa karanlık modu etkinleştir
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            // Aksi halde açık modu etkinleştir
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+    private void initComponents(){
         themeSwitch = findViewById(R.id.themeSwitch);
         backButton = findViewById(R.id.backButton);
         languageSpinner = findViewById(R.id.languageSpinner);
+    }
 
+    private void registerEventHandler(){
         // Set up the language options
         String[] languageOptions = getResources().getStringArray(R.array.language_options);
         ArrayAdapter<String> languageAdapter = new ArrayAdapter<>(this,
@@ -64,17 +82,6 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        // Tema anahtarının durumunu kontrol et ve ayarla
-        boolean darkThemeEnabled = getThemeState();
-        themeSwitch.setChecked(darkThemeEnabled);
-        if (darkThemeEnabled) {
-            // Eğer karanlık tema açıksa karanlık modu etkinleştir
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            // Aksi halde açık modu etkinleştir
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
 
         // Tema anahtarının değişikliklerini dinleme
         themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

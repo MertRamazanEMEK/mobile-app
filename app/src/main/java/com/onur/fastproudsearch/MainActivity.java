@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initComponents();
+        registerEventHandler();
+
         int nightModeFlags =
                 getResources().getConfiguration().uiMode &
                         Configuration.UI_MODE_NIGHT_MASK;
@@ -37,13 +41,17 @@ public class MainActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_Light);
                 break;
         }
+    }
 
+    private void initComponents(){
         // XML'den görünümleri al
         searchTextInputLayout = findViewById(R.id.searchTextInputLayout);
         searchButton = findViewById(R.id.searchButton);
         settingsButton = findViewById(R.id.settingsButton);
         favoritesButton = findViewById(R.id.favoritesButton);
+    }
 
+    private void registerEventHandler(){
         // Arama butonuna tıklama işlemi ekle
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
