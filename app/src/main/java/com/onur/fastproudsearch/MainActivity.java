@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         int nightModeFlags =
                 getResources().getConfiguration().uiMode &
                         Configuration.UI_MODE_NIGHT_MASK;
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_Light);
                 break;
         }
-        setContentView(R.layout.activity_main);
 
         // XML'den görünümleri al
         searchTextInputLayout = findViewById(R.id.searchTextInputLayout);

@@ -23,23 +23,22 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            int nightModeFlags =
-                    getResources().getConfiguration().uiMode &
-                            Configuration.UI_MODE_NIGHT_MASK;
-            switch (nightModeFlags) {
-                case Configuration.UI_MODE_NIGHT_YES:
-                    // Cihaz karanlık modda, karanlık tema kullanılmalı
-                    setTheme(R.style.AppTheme_Dark);
-                    break;
-
-                case Configuration.UI_MODE_NIGHT_NO:
-                case Configuration.UI_MODE_NIGHT_UNDEFINED:
-                    // Cihaz açık temada, varsayılan tema kullanılmalı
-                    setTheme(R.style.AppTheme_Light);
-                    break;
-            }
         setContentView(R.layout.activity_settings);
+        int nightModeFlags =
+                getResources().getConfiguration().uiMode &
+                        Configuration.UI_MODE_NIGHT_MASK;
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                // Cihaz karanlık modda, karanlık tema kullanılmalı
+                setTheme(R.style.AppTheme_Dark);
+                break;
 
+            case Configuration.UI_MODE_NIGHT_NO:
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                // Cihaz açık temada, varsayılan tema kullanılmalı
+                setTheme(R.style.AppTheme_Light);
+                break;
+        }
         themeSwitch = findViewById(R.id.themeSwitch);
         backButton = findViewById(R.id.backButton);
         languageSpinner = findViewById(R.id.languageSpinner);

@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         int nightModeFlags =
                 getResources().getConfiguration().uiMode &
                         Configuration.UI_MODE_NIGHT_MASK;
@@ -32,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_Light);
                 break;
         }
-        setContentView(R.layout.activity_login);
-
 
         // XML dosyasındaki bileşenleri Java değişkenlerine atama
         usernameEditText = findViewById(R.id.usernameEditText);

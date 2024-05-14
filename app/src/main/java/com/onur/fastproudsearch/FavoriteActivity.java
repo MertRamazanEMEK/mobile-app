@@ -16,6 +16,7 @@ public class FavoriteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_favorite);
         int nightModeFlags =
                 getResources().getConfiguration().uiMode &
                         Configuration.UI_MODE_NIGHT_MASK;
@@ -31,8 +32,6 @@ public class FavoriteActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_Light);
                 break;
         }
-        setContentView(R.layout.activity_favorite);
-
         // Favori ürünlerin listesi
         ListView favoriteListView = findViewById(R.id.favoriteListView);
 

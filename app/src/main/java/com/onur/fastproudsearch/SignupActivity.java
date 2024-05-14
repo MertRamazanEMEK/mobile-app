@@ -23,6 +23,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup);
         int nightModeFlags =
                 getResources().getConfiguration().uiMode &
                         Configuration.UI_MODE_NIGHT_MASK;
@@ -38,8 +39,6 @@ public class SignupActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_Light);
                 break;
         }
-        setContentView(R.layout.activity_signup);
-
         // XML dosyasındaki bileşenleri Java değişkenlerine atama
         usernameTextInputLayout = findViewById(R.id.usernameTextInputLayout);
         passwordTextInputLayout = findViewById(R.id.passwordTextInputLayout);
