@@ -12,8 +12,9 @@
         android:id="@+id/themeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Karanlık Tema"
+        android:layout_marginStart="12dp"
         android:checked="false"
+        android:text="Karanlık Tema"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,6 +31,13 @@
         android:id="@+id/languageSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/backButton"  app:layout_constraintEnd_toEndOf="parent"  app:layout_constraintStart_toStartOf="parent"  app:layout_constraintTop_toBottomOf="@+id/themeSwitch"  tools:ignore="MissingConstraints" />
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/themeSwitch"
+        app:layout_constraintVertical_bias="0.071"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
