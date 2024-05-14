@@ -6,6 +6,7 @@
     <string name="settings_description">Settings</string>
     <string name="favorite_description">Favorite</string>
         <string-array name="language_options">
+            <item>English</item>
             <item>Türkçe</item>
             <item>Deutsch</item>
         </string-array>
