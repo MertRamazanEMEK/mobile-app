@@ -36,6 +36,5 @@
         android:layout_centerVertical="true"
         android:entries="@array/language_options"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="105dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
