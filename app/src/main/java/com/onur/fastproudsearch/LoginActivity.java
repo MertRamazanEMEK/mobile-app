@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameEditText, passwordEditText;
-    private Button loginButton, signupButton;
+    private Button loginButton,signupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                     // MainActivity'e geçiş yapmak için Intent oluştur
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent); // MainActivity'e geçiş yap
-                    finish(); // LoginActivity'i kapat
                 } else {
                     // Kullanıcıya uygun bir mesaj göster
                     Toast.makeText(LoginActivity.this, "Lütfen kullanıcı adı ve şifre girin", Toast.LENGTH_SHORT).show();

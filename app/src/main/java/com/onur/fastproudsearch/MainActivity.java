@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout searchTextInputLayout;
@@ -58,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Ayarlar butonuna tıklandı", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent); // MainActivity'e geçiş yap
-                finish(); // LoginActivity'i kapat
             }
         });
 
@@ -70,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Favoriler butonuna tıklandı", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
                 startActivity(intent); // MainActivity'e geçiş yap
-                finish(); // LoginActivity'i kapat
             }
         });
     }
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private void performSearch() {
         // Burada yapılacak olan ürün arama işlemi kodlanır
         // Örnek olarak, şu anda sadece bir Toast mesajı gösteriyoruz
-        String searchQuery = searchTextInputLayout.getEditText().getText().toString().trim();
+        String searchQuery = Objects.requireNonNull(searchTextInputLayout.getEditText()).getText().toString().trim();
         if (!searchQuery.isEmpty()) {
             // Ürün arama işlemi gerçekleştirilir
             // searchProduct(searchQuery);
