@@ -2,8 +2,8 @@
 <resources>
     <!-- Açık tema renkleri -->
     <color name="colorPrimaryLight">#FF4081</color>
-    <color name="colorPrimaryDarkLight">#F50057</color>
-    <color name="colorAccentLight">#FF4081</color>
+    <color name="colorPrimaryDarkLight">#FFFFFF</color>
+    <color name="colorAccentLight">#FFFFFF</color>
 
     <!-- Karanlık tema renkleri -->
     <color name="colorPrimaryDark">#121212</color>
