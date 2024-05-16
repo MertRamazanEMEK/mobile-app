@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
         switch (nightModeFlags) {
             case Configuration.UI_MODE_NIGHT_YES:
                 // Cihaz karanlık modda, karanlık tema kullanılmalı
-                setTheme(R.style.AppTheme_Dark);
+                setTheme(R.style.AppTheme);
                 break;
 
             case Configuration.UI_MODE_NIGHT_NO:
             case Configuration.UI_MODE_NIGHT_UNDEFINED:
                 // Cihaz açık temada, varsayılan tema kullanılmalı
-                setTheme(R.style.AppTheme_Light);
+                setTheme(R.style.AppTheme);
                 break;
         }
     }

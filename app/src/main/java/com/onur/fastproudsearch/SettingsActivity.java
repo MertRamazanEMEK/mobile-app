@@ -29,10 +29,10 @@ public class SettingsActivity extends AppCompatActivity {
         registerEventHandler();
 
         // Tema ayarlarını kontrol et
-        checkTheme();
+        //checkTheme();
 
         // Tema anahtarının durumunu kontrol et ve ayarla
-        boolean darkThemeEnabled = getThemeState();
+        /*boolean darkThemeEnabled = getThemeState();
         themeSwitch.setChecked(darkThemeEnabled);
         if (darkThemeEnabled) {
             // Eğer karanlık tema açıksa karanlık modu etkinleştir
@@ -40,7 +40,7 @@ public class SettingsActivity extends AppCompatActivity {
         } else {
             // Aksi halde açık modu etkinleştir
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
+        }*/
     }
 
     private void initComponents(){
@@ -95,8 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
                     // Eğer anahtar işaretli değilse, açık tema kullan
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     setThemeState(false); // Tema durumunu kaydetme
-                }
-                recreate(); // Yeniden oluşturma işlemi, tema değişikliğinin etkisini hemen göstermek için
+                }// Yeniden oluşturma işlemi, tema değişikliğinin etkisini hemen göstermek için
             }
         });
     }
@@ -108,12 +107,12 @@ public class SettingsActivity extends AppCompatActivity {
         switch (nightModeFlags) {
             case Configuration.UI_MODE_NIGHT_YES:
                 // Cihaz karanlık modda, karanlık tema kullanılmalı
-                setTheme(R.style.AppTheme_Dark);
+                setTheme(R.style.AppTheme);
                 break;
             case Configuration.UI_MODE_NIGHT_NO:
             case Configuration.UI_MODE_NIGHT_UNDEFINED:
                 // Cihaz açık temada, varsayılan tema kullanılmalı
-                setTheme(R.style.AppTheme_Light);
+                setTheme(R.style.AppTheme);
                 break;
         }
     }
