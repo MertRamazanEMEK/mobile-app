@@ -7,4 +7,6 @@
     <string name="settings_description">Ayarlar</string>
     <string name="favorite_description">Favoriler</string>
     <string name="search">Ara</string>
+    <string name="log_in">Giriş Yap</string>
+    <string name="sign_up">Kayıt Ol</string>
 </resources>
