@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Açık tema -->
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppTheme" parent="Theme.Material3.Light">
         <!-- ActionBar -->
-        <item name="colorPrimary">@color/colorPrimaryLight</item> <!-- Açık ana renk -->
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkLight</item> <!-- Açık ana renk (daha koyu ton) -->
-        <item name="colorAccent">@color/colorAccentLight</item> <!-- Açık vurgu rengi -->
+        <!--item name="colorPrimary">@color/colorPrimaryLight</item--> <!-- Açık ana renk -->
+        <!--item name="colorPrimaryDark">@color/colorPrimaryDarkLight</item--> <!-- Açık ana renk (daha koyu ton) -->
+        <!--item name="colorAccent">@color/colorAccentLight</item--> <!-- Açık vurgu rengi -->
         <!-- Diğer özellikler -->
 
         <!-- ... -->

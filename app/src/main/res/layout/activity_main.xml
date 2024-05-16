@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@android:color/background_light" >
+    tools:context=".MainActivity">
 
     <!-- Ürün Arama TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
@@ -28,39 +27,33 @@
         android:layout_centerHorizontal="true"
         android:text="@string/search"
         android:id="@+id/searchButton"/>
+
+
     <LinearLayout
+        android:id="@+id/linearTry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:gravity="bottom"
-        android:padding="16dp">
+        android:layout_margin="10dp">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="bottom" />
-
-        <ImageButton
+        <Button
             android:id="@+id/settingsButton"
-            android:layout_width="180dp"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_settings"
-            android:contentDescription="@string/favorite_description"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_gravity="bottom" />
+            app:iconGravity="textEnd"
+            app:icon="@drawable/ic_settings"/>
 
-        <ImageButton
+        <Button
             android:id="@+id/favoritesButton"
-            android:layout_width="180dp"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite"
-            android:contentDescription="@string/settings_description"/>
+            android:layout_weight="1"
+            app:iconGravity="textStart"
+            app:icon="@drawable/ic_favorite"/>
 
     </LinearLayout>
 
