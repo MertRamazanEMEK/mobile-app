@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout searchTextInputLayout;
     private Button searchButton;
-    private ImageButton settingsButton, favoritesButton;
+    private Button settingsButton, favoritesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

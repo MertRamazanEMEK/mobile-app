@@ -28,32 +28,32 @@
         android:text="@string/search"
         android:id="@+id/searchButton"/>
 
-
     <LinearLayout
         android:id="@+id/linearTry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
+        android:gravity="bottom"
         android:layout_margin="10dp">
 
         <Button
-            android:id="@+id/settingsButton"
-            style="?attr/materialIconButtonFilledStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:iconGravity="textEnd"
-            app:icon="@drawable/ic_settings"/>
-
-        <Button
-            android:id="@+id/favoritesButton"
             style="?attr/materialIconButtonFilledStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:iconGravity="textStart"
-            app:icon="@drawable/ic_favorite"/>
+            app:icon="@drawable/ic_settings"
+            android:id="@+id/settingsButton"/>
+
+        <Button
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:iconGravity="textStart"
+            app:icon="@drawable/ic_favorite"
+            android:id="@+id/favoritesButton"/>
 
     </LinearLayout>
 
