@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:gravity="center">
 
     <!-- Kullanıcı Adı Girişi -->
     <com.google.android.material.textfield.TextInputLayout
@@ -33,24 +34,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Giriş Butonu -->
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/consraintbuttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwordTextInputLayout"
-        android:layout_centerHorizontal="true"
-        android:text="Giriş Yap" />
+        android:layout_below="@+id/passwordTextInputLayout"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!-- Giriş Butonu -->
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Giriş Yap" />
 
-    <!-- Kaydolma Butonu -->
-    <Button
-        android:id="@+id/signupButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginButton"
-        android:layout_centerHorizontal="true"
-        android:text="Kaydol" />
+        <!-- Kaydolma Butonu -->
+        <Button
+            android:id="@+id/signupButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Kaydol" />
+    </LinearLayout>
+
 
 </RelativeLayout>
