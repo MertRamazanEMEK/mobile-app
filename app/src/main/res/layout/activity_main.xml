@@ -27,6 +27,15 @@
         android:layout_centerHorizontal="true"
         android:text="@string/search"
         android:id="@+id/searchButton"/>
+    <ListView
+        android:id="@+id/productsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchButton"
+        android:layout_above="@id/linearTry"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:padding="8dp"/>
 
     <LinearLayout
         android:id="@+id/linearTry"
