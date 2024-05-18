@@ -9,7 +9,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
@@ -17,116 +21,118 @@ import androidx.appcompat.widget.SwitchCompat;
 public class SettingsActivity extends AppCompatActivity {
 
     private SwitchCompat themeSwitch;
-    private Button backButton;
     private Spinner languageSpinner;
+    private Button changePasswordButton, editProfileButton, helpButton, backButton;
+    private TextView usernameLabel, passwordLabel;
 
+    private EditText usernameEditText, passwordEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        initComponents();
-        registerEventHandler();
-
-        // Tema ayarlarını kontrol et
-        //checkTheme();
-
-        // Tema anahtarının durumunu kontrol et ve ayarla
-        /*boolean darkThemeEnabled = getThemeState();
-        themeSwitch.setChecked(darkThemeEnabled);
-        if (darkThemeEnabled) {
-            // Eğer karanlık tema açıksa karanlık modu etkinleştir
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            // Aksi halde açık modu etkinleştir
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }*/
-    }
-
-    private void initComponents(){
         themeSwitch = findViewById(R.id.themeSwitch);
-        backButton = findViewById(R.id.backButton);
         languageSpinner = findViewById(R.id.languageSpinner);
-    }
+        changePasswordButton = findViewById(R.id.changePasswordButton);
+        editProfileButton = findViewById(R.id.editProfileButton);
+        helpButton = findViewById(R.id.helpButton);
+        backButton = findViewById(R.id.backButton);
 
-    private void registerEventHandler(){
-        // Set up the language options
-        String[] languageOptions = getResources().getStringArray(R.array.language_options);
-        ArrayAdapter<String> languageAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, languageOptions);
-        languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        languageSpinner.setAdapter(languageAdapter);
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
+        boolean isDarkMode = sharedPreferences.getBoolean("isDarkMode", false);
+        themeSwitch.setChecked(isDarkMode);
 
-        // Handle language spinner selection changes (optional)
-        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Handle selected language here (e.g., save preference)
-                String selectedLanguage = languageOptions[position];
-                // Implement logic to handle chosen language (e.g., update UI, store preference)
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing here or handle if no selection is made
-            }
-        });
-
-        // Geri butonuna tıklama dinleyicisi ekleme
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // MainActivity'e geri dön
-                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // Tema anahtarının değişikliklerini dinleme
         themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    // Eğer anahtar işaretliyse, karanlık tema kullan
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    setThemeState(true); // Tema durumunu kaydetme
+                    setThemeState(true);
                 } else {
-                    // Eğer anahtar işaretli değilse, açık tema kullan
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    setThemeState(false); // Tema durumunu kaydetme
-                }// Yeniden oluşturma işlemi, tema değişikliğinin etkisini hemen göstermek için
+                    setThemeState(false);
+                }
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.language_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languageSpinner.setAdapter(adapter);
+
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedLanguage = parentView.getItemAtPosition(position).toString();
+                Toast.makeText(SettingsActivity.this, "Seçilen Dil: " + selectedLanguage, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+
+
+
+        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, HelpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
 
-    // Tema durumunu kontrol et
-    private void checkTheme() {
-        int nightModeFlags = getResources().getConfiguration().uiMode &
-                Configuration.UI_MODE_NIGHT_MASK;
-        switch (nightModeFlags) {
-            case Configuration.UI_MODE_NIGHT_YES:
-                // Cihaz karanlık modda, karanlık tema kullanılmalı
-                setTheme(R.style.AppTheme);
-                break;
-            case Configuration.UI_MODE_NIGHT_NO:
-            case Configuration.UI_MODE_NIGHT_UNDEFINED:
-                // Cihaz açık temada, varsayılan tema kullanılmalı
-                setTheme(R.style.AppTheme);
-                break;
-        }
-    }
-
-    // Tema durumunu kaydetmek için yardımcı metot
-    private void setThemeState(boolean darkThemeEnabled) {
-        SharedPreferences.Editor editor = getSharedPreferences("settings", MODE_PRIVATE).edit();
-        editor.putBoolean("darkTheme", darkThemeEnabled);
+    private void setThemeState(boolean isDarkMode) {
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isDarkMode", isDarkMode);
         editor.apply();
     }
 
-    // Kaydedilmiş tema durumunu almak için yardımcı metot
-    private boolean getThemeState() {
-        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-        return prefs.getBoolean("darkTheme", false);
+    private void initComponents(){
+        // Diğer bileşenlerin tanımlamaları burada
+        usernameLabel = findViewById(R.id.usernameEditText);
+        passwordLabel = findViewById(R.id.passwordEditText);
+    }
+
+    private void registerEventHandler(){
+        // Eğer gerekliyse bileşenler için olay dinleyicilerini burada kaydedin
+        // Örneğin, bir butona tıklama dinleyicisi ekleyebilirsiniz.
+    }
+
+    private void loadUserData() {
+        // Kullanıcı adı ve şifre bilgilerini al ve TextView bileşenlerine ata
+        SharedPreferences prefs = getSharedPreferences("user_credentials", MODE_PRIVATE);
+        String username = prefs.getString("username", "");
+        String password = prefs.getString("password", "");
+
+        // Kullanıcı adı ve şifreyi ilgili TextView bileşenlerine ata
+        usernameLabel.setText("Kullanıcı Adı: " + username);
+        passwordLabel.setText("Şifre: " + password);
     }
 }
