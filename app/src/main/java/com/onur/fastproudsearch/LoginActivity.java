@@ -24,8 +24,6 @@ public class LoginActivity extends AppCompatActivity {
         initComponents();
         registerEventHandler();
 
-
-
     }
 
     private void initComponents(){

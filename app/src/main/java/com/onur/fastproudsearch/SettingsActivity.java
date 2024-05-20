@@ -2,6 +2,7 @@ package com.onur.fastproudsearch;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,7 +30,21 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        int nightModeFlags =
+                getResources().getConfiguration().uiMode &
+                        Configuration.UI_MODE_NIGHT_MASK;
+        switch (nightModeFlags) {
+            case Configuration.UI_MODE_NIGHT_YES:
+                // Cihaz karanlık modda, karanlık tema kullanılmalı
+                setTheme(R.style.AppTheme);
+                break;
 
+            case Configuration.UI_MODE_NIGHT_NO:
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                // Cihaz açık temada, varsayılan tema kullanılmalı
+                setTheme(R.style.AppTheme);
+                break;
+        }
         themeSwitch = findViewById(R.id.themeSwitch);
         languageSpinner = findViewById(R.id.languageSpinner);
         changePasswordButton = findViewById(R.id.changePasswordButton);
@@ -90,13 +105,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettingsActivity.this, ExitActivity.class);
-                startActivity(intent);
-            }
-        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
