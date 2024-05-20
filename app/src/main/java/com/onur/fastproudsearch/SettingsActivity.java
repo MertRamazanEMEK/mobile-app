@@ -2,7 +2,6 @@ package com.onur.fastproudsearch;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -94,7 +93,7 @@ public class SettingsActivity extends AppCompatActivity {
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingsActivity.this, HelpActivity.class);
+                Intent intent = new Intent(SettingsActivity.this, ExitActivity.class);
                 startActivity(intent);
             }
         });

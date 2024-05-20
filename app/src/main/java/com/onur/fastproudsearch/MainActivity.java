@@ -1,7 +1,6 @@
 package com.onur.fastproudsearch;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,21 +44,7 @@ public class MainActivity extends AppCompatActivity {
         initComponents();
         registerEventHandler();
 
-        int nightModeFlags =
-                getResources().getConfiguration().uiMode &
-                        Configuration.UI_MODE_NIGHT_MASK;
-        switch (nightModeFlags) {
-            case Configuration.UI_MODE_NIGHT_YES:
-                // Cihaz karanlık modda, karanlık tema kullanılmalı
-                setTheme(R.style.AppTheme);
-                break;
 
-            case Configuration.UI_MODE_NIGHT_NO:
-            case Configuration.UI_MODE_NIGHT_UNDEFINED:
-                // Cihaz açık temada, varsayılan tema kullanılmalı
-                setTheme(R.style.AppTheme);
-                break;
-        }
     }
 
     private void initComponents(){

@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".HelpActivity">
+    tools:context=".ExitActivity">
 
     <!-- Yardım ve destek alanları buraya eklenebilir -->
     <TextView
-        android:id="@+id/helpTitle"
+        android:id="@+id/exitTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Yardım ve Destek"
