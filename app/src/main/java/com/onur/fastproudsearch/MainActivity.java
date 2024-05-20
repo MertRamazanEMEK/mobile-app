@@ -27,7 +27,6 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout searchTextInputLayout;
-    private Button searchButton;
     private Button settingsButton, favoritesButton;
     private ListView productsListView;
     private ArrayAdapter<String> productsAdapter;
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private void initComponents(){
         // XML'den görünümleri al
         searchTextInputLayout = findViewById(R.id.searchTextInputLayout);
-        searchButton = findViewById(R.id.searchButton);
         settingsButton = findViewById(R.id.settingsButton);
         favoritesButton = findViewById(R.id.favoritesButton);
         productsListView = findViewById(R.id.productsListView);
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void registerEventHandler(){
         // Arama butonuna tıklama işlemi ekle
-        searchButton.setOnClickListener(new View.OnClickListener() {
+        searchTextInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 performSearch();
