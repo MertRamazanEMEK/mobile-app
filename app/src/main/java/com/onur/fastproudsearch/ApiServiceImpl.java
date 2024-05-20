@@ -15,18 +15,12 @@ public class ApiServiceImpl implements ApiService {
     private static final Gson gson = new Gson();
 
     @Override
-<<<<<<< Updated upstream
-    public List<Product> getProducts() throws IOException {
-
-        return null;
-=======
     public Response getResponse(String add ) throws IOException {
         Request request=new Request.Builder().url(URL_STRING).build();
         Response response=client.newCall(request).execute();
         if (!response.isSuccessful())
             throw new IOException("Unexpected code"+response);
         return response;
->>>>>>> Stashed changes
     }
 
     @Override
