@@ -27,10 +27,6 @@
             android:exported="true"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ExitActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".ApiService"
             android:exported="true"
             android:theme="@style/AppTheme" />
