@@ -1,24 +1,97 @@
 package com.onur.fastproudsearch;
-
+import java.util.List;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Product {
+
     @SerializedName("id")
-    private String id;
+    @Expose
+    private Integer id;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("price")
+    @Expose
+    private Integer price;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("images")
+    @Expose
+    private List<String> images;
+    @SerializedName("creationAt")
+    @Expose
+    private String creationAt;
+    @SerializedName("updatedAt")
+    @Expose
+    private String updatedAt;
+    @SerializedName("category")
+    @Expose
+    private Category category;
 
-    @SerializedName("name")
-    private String name;
-
-    // Diğer ürün özellikleri buraya eklenebilir
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    // Diğer getter ve setter metotları buraya eklenebilir
-}
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public String getCreationAt() {
+        return creationAt;
+    }
+
+    public void setCreationAt(String creationAt) {
+        this.creationAt = creationAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+}
