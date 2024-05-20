@@ -39,7 +39,7 @@ android {
 
 dependencies {
 
-
+    implementation ("com.google.firebase:firebase-auth:23.0.0")
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.12.0")
