@@ -6,8 +6,8 @@ import java.util.List;
 import okhttp3.Response;
 
 public interface ApiService {
-    Response getResponse(String add) throws IOException;
-    ProductList getProducts() throws IOException;
+    Response getResponse(String search) throws IOException;
+    ProductList getProducts(String search) throws IOException;
     Product getProduct(String id) throws IOException;
 
 }

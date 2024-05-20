@@ -6,15 +6,20 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout searchTextInputLayout;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout productSwipeRefreshLayout;
     private RecyclerView productsRecyclerView;
     private Button settingsButton;
     private Button favoritesButton;
@@ -24,14 +29,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        initComponents();
+        registerEventHandler();
+        try {
+            loadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initComponents(){
         // Views initialization
         searchTextInputLayout = findViewById(R.id.searchTextInputLayout);
-        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        productSwipeRefreshLayout = findViewById(R.id.productSwipeRefreshLayout);
         productsRecyclerView = findViewById(R.id.productsRecyclerView);
         settingsButton = findViewById(R.id.settingsButton);
         favoritesButton = findViewById(R.id.favoritesButton);
+    }
 
-        // Setting up listeners or other actions as needed
+    private void registerEventHandler(){
+
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +65,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-        // Additional setup or functionality can be added here
+    private void loadData() throws IOException {
+        ApiServiceImpl apiService=new ApiServiceImpl();
+        try {
+            ProductList productList = apiService.getProducts("");
+            LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MainActivity.this);
+            productsRecyclerView.setLayoutManager(linearLayoutManager);
+            productsRecyclerView.setHasFixedSize(true);
+            ProductRecyclerViewAdaptor adaptor=new ProductRecyclerViewAdaptor(productList.productList);
+            productsRecyclerView.setAdapter(adaptor);
+            productsRecyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,LinearLayoutManager.VERTICAL));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
