@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -37,14 +39,10 @@ public class SettingsActivity extends AppCompatActivity {
                         Configuration.UI_MODE_NIGHT_MASK;
         switch (nightModeFlags) {
             case Configuration.UI_MODE_NIGHT_YES:
-                // Cihaz karanlık modda, karanlık tema kullanılmalı
-                setTheme(R.style.AppTheme);
                 break;
 
             case Configuration.UI_MODE_NIGHT_NO:
             case Configuration.UI_MODE_NIGHT_UNDEFINED:
-                // Cihaz açık temada, varsayılan tema kullanılmalı
-                setTheme(R.style.AppTheme);
                 break;
         }
         themeSwitch = findViewById(R.id.themeSwitch);
@@ -71,22 +69,51 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.language_options, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        languageSpinner.setAdapter(adapter);
-
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedLanguage = parentView.getItemAtPosition(position).toString();
                 Toast.makeText(SettingsActivity.this, "Seçilen Dil: " + selectedLanguage, Toast.LENGTH_SHORT).show();
+                Configuration configuration = getResources().getConfiguration();
+                Locale locale;
+                if (selectedLanguage.equals("English")) {
+                    // İngilizce seçildiğinde
+                    locale = new Locale("en");
+                } else if (selectedLanguage.equals("Turkish")) {
+                    // Türkçe seçildiğinde
+                    locale = new Locale("tr", "TR"); // Türkçe'nin dil kodu ve ülke kodu
+                } else {
+                    // Varsayılan olarak İngilizce
+                    locale = new Locale("en");
+                }
+                configuration.setLocale(locale);
+                getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
+
+                // Spinner'da seçilen dilin konumunu kaydet
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("language_position", position);
+                editor.apply();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Spinner'da hiçbir şey seçilmediğinde yapılacak işlemler
+                // Varsayılan olarak İngilizce seçilsin
+                Configuration configuration = getResources().getConfiguration();
+                Locale locale = new Locale("en");
+                configuration.setLocale(locale);
+                getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
+                // Spinner'ın ilk öğesinin seçili olduğu pozisyonu kaydet
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("language_position", 0); // İlk öğe seçili olduğu için pozisyon 0
+                editor.apply();
             }
         });
+
+
+
 
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override

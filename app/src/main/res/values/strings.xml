@@ -5,11 +5,6 @@
     <string name="password">Password</string>
     <string name="settings_description">Settings</string>
     <string name="favorite_description">Favorite</string>
-        <string-array name="language_options">
-            <item>English</item>
-            <item>Turkish</item>
-            <item>Deutsch</item>
-        </string-array>
     <string name="search">Search</string>
     <string name="log_in">LogIn</string>
     <string name="sign_up">SignUp</string>
@@ -31,4 +26,5 @@
     <string name="change_your_password">Change Password</string>
     <string name="edit_your_profile">Edit Profile</string>
     <string name="logout_account">Logout Account</string>
+    <string name="signup">Sign Up</string>
 </resources>
