@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="language_options">
+        <item>English</item>
+        <item>Turkish</item>
+    </string-array>
     <string name="app_name">FastProudSearch</string>
     <string name="search_hint">Ürün Ara</string>
     <string name="user_name">Kullanıcı Adı</string>

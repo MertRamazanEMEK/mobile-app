@@ -1,4 +1,8 @@
 <resources>
+    <string-array name="language_options">
+        <item>English</item>
+        <item>Turkish</item>
+    </string-array>
     <string name="app_name">FastProudSearch</string>
     <string name="search_hint">Serach Product</string>
     <string name="user_name">User Name</string>

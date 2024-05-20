@@ -3,10 +3,12 @@ package com.onur.fastproudsearch;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -30,6 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView usernameLabel, passwordLabel;
 
     private EditText usernameEditText, passwordEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
         boolean isDarkMode = sharedPreferences.getBoolean("isDarkMode", false);
+        AppCompatDelegate.setDefaultNightMode(isDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
         themeSwitch.setChecked(isDarkMode);
 
 
@@ -68,49 +72,48 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+        // Dil seçeneklerini bir string dizisi olarak tanımla
+        String[] languageOptions = {"English", "Turkish"};
+
+        // ArrayAdapter oluştur ve dil seçeneklerini bağla
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languageOptions);
+
+        // Spinner'a ArrayAdapter'ı ayarla
+        languageSpinner.setAdapter(adapter);
+
+        // Dil tercihini kontrol et ve dil seçeneklerini doğru pozisyonda göster
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int languagePosition = preferences.getInt("language_position", 0); // Varsayılan olarak ilk dil seçeneği
+        languageSpinner.setSelection(languagePosition);
 
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedLanguage = parentView.getItemAtPosition(position).toString();
-                Toast.makeText(SettingsActivity.this, "Seçilen Dil: " + selectedLanguage, Toast.LENGTH_SHORT).show();
-                Configuration configuration = getResources().getConfiguration();
-                Locale locale;
-                if (selectedLanguage.equals("English")) {
-                    // İngilizce seçildiğinde
-                    locale = new Locale("en");
-                } else if (selectedLanguage.equals("Turkish")) {
-                    // Türkçe seçildiğinde
-                    locale = new Locale("tr", "TR"); // Türkçe'nin dil kodu ve ülke kodu
-                } else {
-                    // Varsayılan olarak İngilizce
-                    locale = new Locale("en");
-                }
-                configuration.setLocale(locale);
-                getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
 
-                // Spinner'da seçilen dilin konumunu kaydet
+                // Önceki dil tercihini SharedPreferences'tan al
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("language_position", position);
-                editor.apply();
+                int previousLanguagePosition = preferences.getInt("language_position", 0);
+
+                // Eğer yeni seçilen dil, önceki seçilen dille aynı değilse devam et
+                if (previousLanguagePosition != position) {
+                    Toast.makeText(SettingsActivity.this, "Seçilen Dil: " + selectedLanguage, Toast.LENGTH_SHORT).show();
+                    setLanguage(selectedLanguage);
+
+                    // Spinner'da seçilen dilin konumunu kaydet
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("language_position", position);
+                    editor.apply();
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Spinner'da hiçbir şey seçilmediğinde yapılacak işlemler
-                // Varsayılan olarak İngilizce seçilsin
-                Configuration configuration = getResources().getConfiguration();
-                Locale locale = new Locale("en");
-                configuration.setLocale(locale);
-                getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
-                // Spinner'ın ilk öğesinin seçili olduğu pozisyonu kaydet
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("language_position", 0); // İlk öğe seçili olduğu için pozisyon 0
-                editor.apply();
+                // Hiçbir şey seçilmediğinde varsayılan dil seçeneğini kaydet
+
             }
         });
+
 
 
 
@@ -160,6 +163,30 @@ public class SettingsActivity extends AppCompatActivity {
         // Diğer bileşenlerin tanımlamaları burada
         usernameLabel = findViewById(R.id.usernameEditText);
         passwordLabel = findViewById(R.id.passwordEditText);
+    }
+    private void setLanguage(String selectedLanguage) {
+        // Dil değişikliğini uygula
+        Locale locale;
+        if (selectedLanguage.equals("English")) {
+            locale = new Locale("en");
+        } else if (selectedLanguage.equals("Turkish")) {
+            locale = new Locale("tr", "TR");
+        } else {
+            locale = new Locale("en");
+        }
+        updateResources(locale);
+    }
+
+    private void updateResources(Locale locale) {
+        Resources res = getResources();
+        Configuration config = new Configuration(res.getConfiguration());
+        config.setLocale(locale);
+        res.updateConfiguration(config, res.getDisplayMetrics());
+
+        // Aktiviteyi yeniden başlat
+        Intent refresh = new Intent(this, SplashActivity.class);
+        startActivity(refresh);
+        finish();
     }
 
     private void registerEventHandler(){

@@ -15,40 +15,61 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31" >
         <activity
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+            android:name=".ApiServiceImpl"
+            android:exported="true"
+            />
+        <activity
+=======
+>>>>>>> 302aaf76f9ad033cd366f9af121999878d99ca62
+>>>>>>> Stashed changes
             android:name=".ChangePasswordActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+            />
         <activity
             android:name=".EditProfileActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+            />
         <activity
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+            android:name=".ApiService"
+            android:exported="true"
+            />
+        <activity
+=======
+>>>>>>> 302aaf76f9ad033cd366f9af121999878d99ca62
+>>>>>>> Stashed changes
             android:name=".ForgotPasswordActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+           />
         <activity
             android:name=".SignupActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+           />
         <activity
             android:name=".FavoriteActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+            />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+            />
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+            />
         <activity
             android:name=".SplashActivity"
-            android:exported="true" >
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
