@@ -9,6 +9,7 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public List<Product> getProducts() throws IOException {
-        
+
+        return null;
     }
 }

@@ -43,6 +43,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordTextInputLayout"
         android:layout_centerHorizontal="true"
-        android:text="@string/signup" />
+        android:text="Kaydol" />
 
 </RelativeLayout>
