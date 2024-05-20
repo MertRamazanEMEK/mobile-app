@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Ürün Arama TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchTextInputLayout"
         android:layout_width="match_parent"
@@ -20,7 +19,6 @@
             android:hint="@string/search_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Arama Butonu -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,5 +65,4 @@
 
     </LinearLayout>
 
-    <!-- android:src="@drawable/ic_favorite" app:layout_constraintBottom_toTopOf="@id/settingsButton"-->
 </RelativeLayout>
