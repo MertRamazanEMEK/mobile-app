@@ -24,7 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private SwitchCompat themeSwitch;
     private Spinner languageSpinner;
-    private Button changePasswordButton, editProfileButton, helpButton, backButton;
+    private Button changePasswordButton, editProfileButton, helpButton;
     private TextView usernameLabel, passwordLabel;
 
     private EditText usernameEditText, passwordEditText;
@@ -52,7 +52,6 @@ public class SettingsActivity extends AppCompatActivity {
         changePasswordButton = findViewById(R.id.changePasswordButton);
         editProfileButton = findViewById(R.id.editProfileButton);
         helpButton = findViewById(R.id.helpButton);
-        backButton = findViewById(R.id.backButton);
 
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
         boolean isDarkMode = sharedPreferences.getBoolean("isDarkMode", false);
@@ -93,15 +92,15 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                        // Oturumu sonlandır
-                        FirebaseAuth.getInstance().signOut();
+                // Oturumu sonlandır
+                FirebaseAuth.getInstance().signOut();
 
-                        // Oturum sonlandırıldıktan sonra login ekranına yönlendir
-                        Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
-                        startActivity(intent);
+                // Oturum sonlandırıldıktan sonra login ekranına yönlendir
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                startActivity(intent);
 
-                        // Aktiviteyi kapat
-                        finish();
+                // Aktiviteyi kapat
+                finish();
             }
         });
 
@@ -121,13 +120,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void setThemeState(boolean isDarkMode) {

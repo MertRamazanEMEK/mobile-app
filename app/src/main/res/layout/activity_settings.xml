@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="Karanlık Tema"
+        android:text="@string/dark_thema"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +31,7 @@
         android:id="@+id/accountInfoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hesap Bilgileri"
+        android:text="@string/account_info"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/languageSpinner"
@@ -42,7 +42,7 @@
         android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kullanıcı Adı: "
+        android:text="@string/your_user_name"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/accountInfoTitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:id="@+id/passwordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Şifre: "
+        android:text="@string/your_password"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/usernameTextView"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
         android:id="@+id/changePasswordButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Şifreyi Değiştir"
+        android:text="@string/change_your_password"
         app:layout_constraintTop_toBottomOf="@id/passwordTextView"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="20dp" />
@@ -71,7 +71,7 @@
         android:id="@+id/editProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profili Düzenle"
+        android:text="@string/edit_your_profile"
         app:layout_constraintTop_toBottomOf="@id/changePasswordButton"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp" />
@@ -80,18 +80,9 @@
         android:id="@+id/helpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yardım ve Destek"
+        android:text="@string/logout_account"
         app:layout_constraintTop_toBottomOf="@id/editProfileButton"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp" />
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Geri"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

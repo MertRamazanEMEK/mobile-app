@@ -10,4 +10,22 @@
     <string name="log_in">Giriş Yap</string>
     <string name="sign_up">Kayıt Ol</string>
     <string name="forgot_password">Şifre Unuttum</string>
+    <string name="favorites_button_description">Favoriler</string>
+    <string name="settings_button_description">Ayarlar</string>
+    <string name="current_password">Mevcut Şifre</string>
+    <string name="new_passwords">Yeni Şifre</string>
+    <string name="confirmnew_password">Yeni Şifreyi Onayla</string>
+    <string name="change_password">Şifreyi Değiştir</string>
+    <string name="edit_profile">Profili Düzenle</string>
+    <string name="forgot_my_password">Şifremi Unuttum</string>
+    <string name="enter_email">Email Girin</string>
+    <string name="reset_password">Şifreyi Sıfırlayın</string>
+    <string name="dark_thema">Karanlık Tema</string>
+    <string name="account_info">Hesap Bilgileri</string>
+    <string name="your_user_name">Kullanıcı Adı</string>
+    <string name="your_password">Şifre</string>
+    <string name="change_your_password">Şifreyi Değiştir</string>
+    <string name="edit_your_profile">Profili Düzenle</string>
+    <string name="logout_account">Hesaptan Çık</string>
+    <string name="signup">Kaydol</string>
 </resources>
