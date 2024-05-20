@@ -9,4 +9,5 @@
     <string name="search">Ara</string>
     <string name="log_in">Giriş Yap</string>
     <string name="sign_up">Kayıt Ol</string>
+    <string name="forgot_password">Şifre Unuttum</string>
 </resources>
