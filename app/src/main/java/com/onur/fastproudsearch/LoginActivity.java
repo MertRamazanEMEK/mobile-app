@@ -32,6 +32,15 @@ public class LoginActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.signupButton);
         forgotPasswordButton = findViewById(R.id.forgotpasswordButton);
 
+        // Oturum kontrolü yap
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // Oturum açık ise, MainActivity'ye yönlendir
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish(); // LoginActivity'yi kapat
+        }
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

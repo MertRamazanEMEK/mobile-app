@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SettingsActivity extends AppCompatActivity {
 
     private SwitchCompat themeSwitch;
@@ -87,7 +89,21 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                        // Oturumu sonlandır
+                        FirebaseAuth.getInstance().signOut();
+
+                        // Oturum sonlandırıldıktan sonra login ekranına yönlendir
+                        Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                        startActivity(intent);
+
+                        // Aktiviteyi kapat
+                        finish();
+            }
+        });
 
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
