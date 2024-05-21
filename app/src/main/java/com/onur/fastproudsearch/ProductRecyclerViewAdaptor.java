@@ -10,6 +10,8 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class ProductRecyclerViewAdaptor extends RecyclerView.Adapter<ProductRecyclerViewAdaptor.ProductViewHolder> {
@@ -44,6 +46,9 @@ public class ProductRecyclerViewAdaptor extends RecyclerView.Adapter<ProductRecy
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product=productList.get(position);
         holder.productAppCompatImageView.setImageURI(Uri.parse(product.getImages().get(0)));
+        Picasso.get()
+                .load(product.getImages().get(0))
+                .into(holder.productAppCompatImageView);
         holder.titleAppCompatTextView.setText(product.getTitle());
         holder.descriptionAppCompatTextView.setText(product.getDescription());
         holder.priceAppCompatTextView.setText(product.getPrice().toString());

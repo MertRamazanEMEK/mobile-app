@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements ProductCallback{
         initComponents();
         registerEventHandler();
         fetchProducts("");
+        downloadImages();
     }
 
     private void fetchProducts(String url) {
@@ -89,5 +90,9 @@ public class MainActivity extends AppCompatActivity implements ProductCallback{
     @Override
     public void onApiCallFailed(String errorMessage) {
         Toast.makeText(MainActivity.this, "Ürünler Yüklenemedi.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void downloadImages(){
+
     }
 }
