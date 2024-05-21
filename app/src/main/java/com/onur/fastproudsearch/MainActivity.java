@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
         initComponents();
         registerEventHandler();
-        try {
+        /*try {
             loadData();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private void initComponents(){
@@ -65,21 +66,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        searchTextInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void loadData() throws IOException {
-        ApiServiceImpl apiService=new ApiServiceImpl();
-        try {
-            ProductList productList = apiService.getProducts("");
-            LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MainActivity.this);
-            productsRecyclerView.setLayoutManager(linearLayoutManager);
-            productsRecyclerView.setHasFixedSize(true);
-            ProductRecyclerViewAdaptor adaptor=new ProductRecyclerViewAdaptor(productList.productList);
-            productsRecyclerView.setAdapter(adaptor);
-            productsRecyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,LinearLayoutManager.VERTICAL));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        Gson gson = new Gson();
+        ApiServiceImpl apiService = new ApiServiceImpl();
+        apiService.getResponse("");
+        ProductList productList = gson.fromJson(apiService.getJson(),ProductList.class);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MainActivity.this);
+        productsRecyclerView.setLayoutManager(linearLayoutManager);
+        productsRecyclerView.setHasFixedSize(true);
+        ProductRecyclerViewAdaptor adaptor=new ProductRecyclerViewAdaptor(productList.productList);
+        productsRecyclerView.setAdapter(adaptor);
+        productsRecyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,LinearLayoutManager.VERTICAL));
     }
 }

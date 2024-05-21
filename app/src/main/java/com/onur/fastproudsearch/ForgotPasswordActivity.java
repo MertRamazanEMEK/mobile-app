@@ -3,17 +3,26 @@ package com.onur.fastproudsearch;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.regex.Pattern;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     private EditText editTextEmail;
     private Button buttonResetPassword;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,36 +35,27 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         buttonResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = editTextEmail.getText().toString();
-                if (isValidEmail(email)) {
-                    sendResetEmail(email);
-                } else {
-                    Toast.makeText(ForgotPasswordActivity.this, "Geçersiz e-posta adresi.", Toast.LENGTH_SHORT).show();
+                String email = editTextEmail.getText().toString().trim();
+
+                if (Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.isEmpty()){
+                    Toast.makeText(ForgotPasswordActivity.this, "Lütfen Geçerli Bir Mail Giriniz", Toast.LENGTH_SHORT).show();
+                    editTextEmail.requestFocus();
+                    return;
                 }
+
+                mAuth = FirebaseAuth.getInstance();
+                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(ForgotPasswordActivity.this, "E-posta Gönderildi. Lütfen Mailinizi Giriniz", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(ForgotPasswordActivity.this, "E-posta Gönderilemedi. Lütfen Geçerli ve Kayıtlı Bir Posta Giriniz.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
-    }
-
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        return pattern.matcher(email).matches();
-    }
-
-    private void sendResetEmail(String email) {
-        // Şifre sıfırlama bağlantısının olduğu bir URL oluşturun
-        String resetUrl = "http://example.com/reset_password?email=" + email;
-
-        // E-posta gönderme işlemi için bir e-posta istemcisini başlatın
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:" + email));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Şifre Sıfırlama");
-        intent.putExtra(Intent.EXTRA_TEXT, "Şifrenizi sıfırlamak için lütfen aşağıdaki bağlantıya tıklayın:\n\n" + resetUrl);
-
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(Intent.createChooser(intent, "E-posta istemcisini seçin"));
-        } else {
-            Toast.makeText(this, "E-posta istemcisi bulunamadı.", Toast.LENGTH_SHORT).show();
-        }
     }
 }
