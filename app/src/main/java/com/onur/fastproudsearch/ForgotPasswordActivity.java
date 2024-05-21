@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
+
+import java.util.Objects;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -31,21 +34,36 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = editTextEmail.getText().toString().trim();
 
-                if (Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.isEmpty()){
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.isEmpty()){
                     Toast.makeText(ForgotPasswordActivity.this, "Lütfen Geçerli Bir Mail Giriniz", Toast.LENGTH_SHORT).show();
                     editTextEmail.requestFocus();
                     return;
                 }
 
                 mAuth = FirebaseAuth.getInstance();
-                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(ForgotPasswordActivity.this, "E-posta Gönderildi. Lütfen Mailinizi Giriniz", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Toast.makeText(ForgotPasswordActivity.this, "E-posta Gönderilemedi. Lütfen Geçerli ve Kayıtlı Bir Posta Giriniz.", Toast.LENGTH_SHORT).show();
+                            SignInMethodQueryResult result = task.getResult();
+
+                            if (Objects.requireNonNull(result.getSignInMethods()).isEmpty()){
+                                Toast.makeText(ForgotPasswordActivity.this, "Girilen e-posta Sisteme Kayıtlı Değil" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            }else {
+                                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            Toast.makeText(ForgotPasswordActivity.this, "E-posta Gönderildi. Lütfen Mailinizi Giriniz", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else {
+                                            Toast.makeText(ForgotPasswordActivity.this, "E-posta Gönderilemedi. Lütfen Geçerli ve Kayıtlı Bir Posta Giriniz.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        }else {
+                            Toast.makeText(ForgotPasswordActivity.this, "Kullanıcı sorgusu başarısız oldu. Hata: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

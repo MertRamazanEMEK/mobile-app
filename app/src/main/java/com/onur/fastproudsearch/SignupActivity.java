@@ -64,7 +64,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 // Firebase üzerinde kullanıcının var olup olmadığını kontrol etme
-                Task<SignInMethodQueryResult> signInMethodQueryResultTask = mAuth.fetchSignInMethodsForEmail(username).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                mAuth.fetchSignInMethodsForEmail(username).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                     @Override
                     public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                         if (task.isSuccessful()) {
@@ -72,30 +72,31 @@ public class SignupActivity extends AppCompatActivity {
                             if (Objects.requireNonNull(result.getSignInMethods()).isEmpty()) {
                                 // Kullanıcı Firebase'de kayıtlı değilse, kaydı gerçekleştir
                                 mAuth.createUserWithEmailAndPassword(username, password)
-                                        .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                                if (task.isSuccessful()) {
-                                                    // Kayıt başarılı
-                                                    FirebaseUser user = mAuth.getCurrentUser();
-                                                    user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            if (task.isSuccessful()) {
-                                                                Toast.makeText(SignupActivity.this, "Kayıt başarılı. Lütfen Mailinizi Kontrol Edin.", Toast.LENGTH_SHORT).show();
-                                                            } else {
-                                                                Toast.makeText(SignupActivity.this, "Kayıt başarısız. Lütfen Aktif Bir Mail Girdiğinize Emin Olun.", Toast.LENGTH_SHORT).show();
-                                                            }
+                                    .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                // Kayıt başarılı
+                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()){
+                                                            Toast.makeText(SignupActivity.this, "Kayıt başarılı. Lütfen Mailinizi Kontrol Edin.", Toast.LENGTH_SHORT).show();
                                                         }
-                                                    });
+                                                        else {
+                                                            Toast.makeText(SignupActivity.this, "Kayıt başarısız. Lütfen Aktif Bir Mail Girdiğinize Emin Olun.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
 
-                                                    // Burada isterseniz başka bir aktiviteye geçiş yapabilirsiniz.
-                                                } else {
-                                                    // Kayıt başarısız
-                                                    Toast.makeText(SignupActivity.this, "Kayıt başarısız. Hata: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                                                }
+                                                // Burada isterseniz başka bir aktiviteye geçiş yapabilirsiniz.
+                                            } else {
+                                                // Kayıt başarısız
+                                                Toast.makeText(SignupActivity.this, "Kayıt başarısız. Hata: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                                             }
-                                        });
+                                        }
+                                    });
                             } else {
                                 // Kullanıcı Firebase'de zaten kayıtlı
                                 Toast.makeText(SignupActivity.this, "Bu email adresi zaten kullanılıyor.", Toast.LENGTH_SHORT).show();
