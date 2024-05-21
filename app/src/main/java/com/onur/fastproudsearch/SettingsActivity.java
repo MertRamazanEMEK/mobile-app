@@ -51,7 +51,6 @@ public class SettingsActivity extends AppCompatActivity {
         themeSwitch = findViewById(R.id.themeSwitch);
         languageSpinner = findViewById(R.id.languageSpinner);
         changePasswordButton = findViewById(R.id.changePasswordButton);
-        editProfileButton = findViewById(R.id.editProfileButton);
         helpButton = findViewById(R.id.helpButton);
 
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
@@ -142,15 +141,6 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettingsActivity.this, EditProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     private void setThemeState(boolean isDarkMode) {
@@ -202,7 +192,7 @@ public class SettingsActivity extends AppCompatActivity {
         String password = prefs.getString("password", "");
 
         // Kullanıcı adı ve şifreyi ilgili TextView bileşenlerine ata
-        usernameLabel.setText("Kullanıcı Adı: " + username);
-        passwordLabel.setText("Şifre: " + password);
+        usernameLabel.setText("User Name: " + username);
+        passwordLabel.setText("Password: " + password);
     }
 }

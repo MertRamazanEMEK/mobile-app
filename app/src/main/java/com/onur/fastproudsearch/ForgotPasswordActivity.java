@@ -55,19 +55,21 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()){
                                             Toast.makeText(ForgotPasswordActivity.this, "E-posta Gönderildi. Lütfen Mailinizi Giriniz", Toast.LENGTH_SHORT).show();
+
                                         }
                                         else {
                                             Toast.makeText(ForgotPasswordActivity.this, "E-posta Gönderilemedi. Lütfen Geçerli ve Kayıtlı Bir Posta Giriniz.", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
                                 });
                             }
                         }else {
                             Toast.makeText(ForgotPasswordActivity.this, "Kullanıcı sorgusu başarısız oldu. Hata: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
                 });
             }
         });
+
     }
 }
