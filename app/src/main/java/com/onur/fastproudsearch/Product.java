@@ -1,10 +1,11 @@
 package com.onur.fastproudsearch;
-import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
+import java.util.List;
 
+public class Product {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -34,7 +35,9 @@ public class Product {
         return id;
     }
 
-    public void setId(Integer id) {this.id = id;}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

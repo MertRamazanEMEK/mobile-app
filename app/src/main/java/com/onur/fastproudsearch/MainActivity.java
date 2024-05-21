@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,11 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         initComponents();
         registerEventHandler();
-        /*try {
-            loadData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        loadData();
     }
 
     private void initComponents(){
@@ -75,15 +69,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadData() throws IOException {
-        Gson gson = new Gson();
-        ApiServiceImpl apiService = new ApiServiceImpl();
-        apiService.getResponse("");
-        ProductList productList = gson.fromJson(apiService.getJson(),ProductList.class);
+    private void loadData(){
+        List<Product> productList = new ProductApiCallbackResponse().getProducts("");
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MainActivity.this);
         productsRecyclerView.setLayoutManager(linearLayoutManager);
         productsRecyclerView.setHasFixedSize(true);
-        ProductRecyclerViewAdaptor adaptor=new ProductRecyclerViewAdaptor(productList.productList);
+        ProductRecyclerViewAdaptor adaptor=new ProductRecyclerViewAdaptor(productList);
         productsRecyclerView.setAdapter(adaptor);
         productsRecyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,LinearLayoutManager.VERTICAL));
     }
