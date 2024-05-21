@@ -97,7 +97,8 @@ public class SettingsActivity extends AppCompatActivity {
 
                 // Eğer yeni seçilen dil, önceki seçilen dille aynı değilse devam et
                 if (previousLanguagePosition != position) {
-                    Toast.makeText(SettingsActivity.this, "Seçilen Dil: " + selectedLanguage, Toast.LENGTH_SHORT).show();
+                    String message = getString(R.string.selected_language_message, selectedLanguage);
+                    Toast.makeText(SettingsActivity.this, message, Toast.LENGTH_SHORT).show();
                     setLanguage(selectedLanguage);
 
                     // Spinner'da seçilen dilin konumunu kaydet
