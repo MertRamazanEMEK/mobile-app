@@ -32,4 +32,7 @@
     <string name="logout_account">Hesaptan Çık</string>
     <string name="signup">Kaydol</string>
     <string name="selected_language_message">Selected Language:  %s</string>
+    <string name="product_title">Ürün Başlığı</string>
+    <string name="product_description">Ürün Detayı</string>
+    <string name="price">Fiyat</string>
 </resources>

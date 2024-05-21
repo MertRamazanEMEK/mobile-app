@@ -32,4 +32,7 @@
     <string name="logout_account">Logout Account</string>
     <string name="signup">Sign Up</string>
     <string name="selected_language_message">Selected Language: %s</string>
+    <string name="product_title">Product Title</string>
+    <string name="product_description">Product Description</string>
+    <string name="price">Price</string>
 </resources>
