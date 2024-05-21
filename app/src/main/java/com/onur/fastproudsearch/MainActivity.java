@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -15,7 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ProductCallback{
 
     private TextInputLayout searchTextInputLayout;
     private SwipeRefreshLayout productSwipeRefreshLayout;
@@ -31,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
 
         initComponents();
         registerEventHandler();
-        loadData();
+        fetchProducts("");
+    }
+
+    private void fetchProducts(String url) {
+        ProductApiCallbackResponse apiCallbackResponse = new ProductApiCallbackResponse();
+        url = ""; // Örnek URL
+        apiCallbackResponse.getProducts(url, this);
     }
 
     private void initComponents(){
@@ -69,13 +76,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadData(){
-        List<Product> productList = new ProductApiCallbackResponse().getProducts("");
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(MainActivity.this);
+    @Override
+    public void onProductsReceived(List<Product> productList) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
         productsRecyclerView.setLayoutManager(linearLayoutManager);
         productsRecyclerView.setHasFixedSize(true);
-        ProductRecyclerViewAdaptor adaptor=new ProductRecyclerViewAdaptor(productList);
+        ProductRecyclerViewAdaptor adaptor = new ProductRecyclerViewAdaptor(productList);
         productsRecyclerView.setAdapter(adaptor);
         productsRecyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,LinearLayoutManager.VERTICAL));
+    }
+
+    @Override
+    public void onApiCallFailed(String errorMessage) {
+        Toast.makeText(MainActivity.this, "Ürünler Yüklenemedi.", Toast.LENGTH_SHORT).show();
     }
 }

@@ -10,28 +10,27 @@ import retrofit2.Response;
 
 public class ProductApiCallbackResponse {
 
-    private static final String TAG="ProductApiCallbackResponse";
-    List<Product> productList = null;
-    List<Product> getProducts(String url){
+    private static final String TAG = "ProductApiCallbackResponse";
+
+    public void getProducts(String url, final ProductCallback callback) {
         ProductApi apiService = ProductApiCallback.getApiService();
         Call<List<Product>> call = apiService.getProducts(url);
 
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                if (response.isSuccessful()){
-                    productList = response.body();
-                }
-                else {
-                    Log.e(TAG,response.message());
+                if (response.isSuccessful()) {
+                    List<Product> productList = response.body();
+                    callback.onProductsReceived(productList);
+                } else {
+                    callback.onApiCallFailed(response.message());
                 }
             }
-
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.e(TAG,"Api call error.");
+                Log.e(TAG, "Api call error.", t);
+                callback.onApiCallFailed("Api call error: " + t.getMessage());
             }
         });
-        return productList;
     }
 }
