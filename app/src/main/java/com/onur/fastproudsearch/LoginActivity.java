@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             // Oturum açık ise, MainActivity'ye yönlendir
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
-            finish(); // LoginActivity'yi kapat
+            finish(); // LoginActivity'yi dskapat
         }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
