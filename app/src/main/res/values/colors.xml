@@ -10,4 +10,6 @@
     <color name="colorPrimaryDarker">#FFFFFF</color>
     <color name="colorAccentDark">#303030</color>
 
+    <color name="yellow">#FFEB3B</color>
+
 </resources>
