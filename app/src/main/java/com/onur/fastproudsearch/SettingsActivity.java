@@ -29,9 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
     private SwitchCompat themeSwitch;
     private Spinner languageSpinner;
     private Button changePasswordButton, editProfileButton, helpButton;
-    private TextView usernameLabel, passwordLabel;
-
     private EditText usernameEditText, passwordEditText;
+    private TextView usernameLabel, passwordLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,6 @@ public class SettingsActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(isDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
         themeSwitch.setChecked(isDarkMode);
 
-
         themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -71,6 +69,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
         // Dil seçeneklerini bir string dizisi olarak tanımla
         String[] languageOptions = {"English", "Turkish"};
 
@@ -114,10 +113,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +136,12 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Bileşenlerin tanımlamaları
+        usernameEditText = findViewById(R.id.usernameEditText);
+
+        usernameLabel = findViewById(R.id.usernameLabel);
+
     }
 
     private void setThemeState(boolean isDarkMode) {
@@ -150,11 +151,6 @@ public class SettingsActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void initComponents(){
-        // Diğer bileşenlerin tanımlamaları burada
-        usernameLabel = findViewById(R.id.usernameEditText);
-        passwordLabel = findViewById(R.id.passwordEditText);
-    }
     private void setLanguage(String selectedLanguage) {
         // Dil değişikliğini uygula
         Locale locale;
@@ -178,21 +174,5 @@ public class SettingsActivity extends AppCompatActivity {
         Intent refresh = new Intent(this, SplashActivity.class);
         startActivity(refresh);
         finish();
-    }
-
-    private void registerEventHandler(){
-        // Eğer gerekliyse bileşenler için olay dinleyicilerini burada kaydedin
-        // Örneğin, bir butona tıklama dinleyicisi ekleyebilirsiniz.
-    }
-
-    private void loadUserData() {
-        // Kullanıcı adı ve şifre bilgilerini al ve TextView bileşenlerine ata
-        SharedPreferences prefs = getSharedPreferences("user_credentials", MODE_PRIVATE);
-        String username = prefs.getString("username", "");
-        String password = prefs.getString("password", "");
-
-        // Kullanıcı adı ve şifreyi ilgili TextView bileşenlerine ata
-        usernameLabel.setText("User Name: " + username);
-        passwordLabel.setText("Password: " + password);
     }
 }
