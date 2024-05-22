@@ -15,12 +15,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements ProductCallback{
 
     private TextInputLayout searchTextInputLayout;
-    private SwipeRefreshLayout productSwipeRefreshLayout;
     private RecyclerView productsRecyclerView;
+    private SwipeRefreshLayout produsctsSwipeRefreshLayout;
     private Button settingsButton;
     private Button favoritesButton;
 
@@ -33,20 +34,18 @@ public class MainActivity extends AppCompatActivity implements ProductCallback{
         initComponents();
         registerEventHandler();
         fetchProducts("");
-        downloadImages();
     }
 
     private void fetchProducts(String url) {
         ProductApiCallbackResponse apiCallbackResponse = new ProductApiCallbackResponse();
-        url = ""; // Örnek URL
         apiCallbackResponse.getProducts(url, this);
     }
 
     private void initComponents(){
         // Views initialization
         searchTextInputLayout = findViewById(R.id.searchTextInputLayout);
-        productSwipeRefreshLayout = findViewById(R.id.productSwipeRefreshLayout);
         productsRecyclerView = findViewById(R.id.productsRecyclerView);
+        produsctsSwipeRefreshLayout = findViewById(R.id.productSwipeRefreshLayout);
         settingsButton = findViewById(R.id.settingsButton);
         favoritesButton = findViewById(R.id.favoritesButton);
     }
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements ProductCallback{
         searchTextInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                fetchProducts(Objects.requireNonNull(searchTextInputLayout.getEditText()).getText().toString());
             }
         });
     }
@@ -90,9 +89,5 @@ public class MainActivity extends AppCompatActivity implements ProductCallback{
     @Override
     public void onApiCallFailed(String errorMessage) {
         Toast.makeText(MainActivity.this, "Ürünler Yüklenemedi.", Toast.LENGTH_SHORT).show();
-    }
-
-    private void downloadImages(){
-
     }
 }

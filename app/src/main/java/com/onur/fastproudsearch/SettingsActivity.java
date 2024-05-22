@@ -89,17 +89,14 @@ public class SettingsActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedLanguage = parentView.getItemAtPosition(position).toString();
 
-                // Önceki dil tercihini SharedPreferences'tan al
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
                 int previousLanguagePosition = preferences.getInt("language_position", 0);
 
-                // Eğer yeni seçilen dil, önceki seçilen dille aynı değilse devam et
                 if (previousLanguagePosition != position) {
                     String message = getString(R.string.selected_language_message, selectedLanguage);
                     Toast.makeText(SettingsActivity.this, message, Toast.LENGTH_SHORT).show();
                     setLanguage(selectedLanguage);
 
-                    // Spinner'da seçilen dilin konumunu kaydet
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putInt("language_position", position);
                     editor.apply();
@@ -108,7 +105,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Hiçbir şey seçilmediğinde varsayılan dil seçeneğini kaydet
 
             }
         });
@@ -136,11 +132,6 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // Bileşenlerin tanımlamaları
-        usernameEditText = findViewById(R.id.usernameEditText);
-
-        usernameLabel = findViewById(R.id.usernameLabel);
 
     }
 

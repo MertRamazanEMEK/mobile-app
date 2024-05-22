@@ -1,6 +1,5 @@
 package com.onur.fastproudsearch;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +44,6 @@ public class ProductRecyclerViewAdaptor extends RecyclerView.Adapter<ProductRecy
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product=productList.get(position);
-        holder.productAppCompatImageView.setImageURI(Uri.parse(product.getImages().get(0)));
         Picasso.get()
                 .load(product.getImages().get(0))
                 .into(holder.productAppCompatImageView);
