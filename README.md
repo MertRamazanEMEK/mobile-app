@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>README - Mobile App</title>
-</head>
-<body>
     <h1>Mobile App</h1>
     <p>
         Bu proje, Java ile geliştirilmiş bir mobil uygulamadır. Kullanıcılar hesap doğrulaması, ürün arama ve favorilere ekleme gibi işlemleri gerçekleştirebilir.
@@ -58,5 +50,3 @@
     <p>
         Bu proje açık kaynaklı değildir ve dış katkılara kapalıdır.
     </p>
-</body>
-</html>
