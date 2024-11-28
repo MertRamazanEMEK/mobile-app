@@ -2,6 +2,9 @@
 
 Bu proje, Java ile geliştirilmiş bir mobil uygulamadır. Kullanıcılar hesap doğrulaması, ürün arama ve favorilere ekleme gibi işlemleri gerçekleştirebilir.
 
+## Uygulama Görüntüleri
+![Giriş Ekranı](./images/Screenshot_2024-11-28-21-30-42-837_com.onur.fastproudsearch.jpg) ![Ürün Ekranı](./images/Screenshot_2024-11-28-21-31-55-366_com.onur.fastproudsearch.jpg) ![Favoriler Ekranı](./images/Screenshot_2024-11-28-21-32-03-219_com.onur.fastproudsearch.jpg) ![Ayarlar Ekranı](./images/Screenshot_2024-11-28-21-32-10-291_com.onur.fastproudsearch.jpg)
+
 ## Özellikler
 
 - **Firebase Authentication**: Hesap doğrulaması ve şifre sıfırlama.
