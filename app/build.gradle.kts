@@ -9,13 +9,8 @@ android {
 
     defaultConfig {
         applicationId = "com.onur.fastproudsearch"
-<<<<<<< Updated upstream
         minSdk = 31
-        targetSdk = 34
-=======
-        minSdk = 29
         targetSdk = 35
->>>>>>> Stashed changes
         versionCode = 1
         versionName = "1.0"
 
