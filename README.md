@@ -1,52 +1,43 @@
-    <h1>Mobile App</h1>
-    <p>
-        Bu proje, Java ile geliştirilmiş bir mobil uygulamadır. Kullanıcılar hesap doğrulaması, ürün arama ve favorilere ekleme gibi işlemleri gerçekleştirebilir.
-    </p>
+# Mobile App
 
-    <h2>Özellikler</h2>
-    <ul>
-        <li><strong>Firebase Authentication:</strong> Hesap doğrulaması ve şifre sıfırlama.</li>
-        <li><strong>API Kullanımı:</strong> Market sayfasındaki ürünlere erişim.</li>
-        <li><strong>Favoriler:</strong> Kullanıcıların favorilere eklediği ürünleri Firebase Realtime Database'de saklama.</li>
-        <li><strong>Tema ve Dil Ayarları:</strong> Uygulama temasını ve dilini özelleştirme.</li>
-    </ul>
+Bu proje, Java ile geliştirilmiş bir mobil uygulamadır. Kullanıcılar hesap doğrulaması, ürün arama ve favorilere ekleme gibi işlemleri gerçekleştirebilir.
 
-    <h2>Gereksinimler</h2>
-    <ul>
-        <li>Minimum SDK: 31 (Android 12)</li>
-        <li>Hedef SDK: 35 (Android 14)</li>
-        <li>Geliştirme Ortamı: Android Studio</li>
-    </ul>
+## Özellikler
 
-    <h2>Kurulum</h2>
-    <ol>
-        <li>Depoyu klonlayın:
-            <pre><code>git clone https://github.com/MertRamazanEMEK/mobile-app.git</code></pre>
-            veya doğrudan GitHub sayfasından zip dosyasını indirip çıkarın.
-        </li>
-        <li>Android Studio kullanarak projeyi açın.</li>
-    </ol>
+- **Firebase Authentication**: Hesap doğrulaması ve şifre sıfırlama.
+- **API Kullanımı**: Market sayfasındaki ürünlere erişim.
+- **Favoriler**: Kullanıcıların favorilere eklediği ürünleri Firebase Realtime Database'de saklama.
+- **Tema ve Dil Ayarları**: Uygulama temasını ve dilini özelleştirme.
 
-    <h2>Kullanım</h2>
-    <ol>
-        <li><strong>Sanal Cihazda Çalıştırma:</strong> Android Studio'daki bir emülatör üzerinden uygulamayı başlatabilirsiniz.</li>
-        <li><strong>Gerçek Cihazda Çalıştırma:</strong>
-            <ul>
-                <li>Geliştirici seçeneklerini etkinleştirin.</li>
-                <li>Telefonunuzu bilgisayara bağlayarak uygulamayı cihaz üzerinde çalıştırın.</li>
-            </ul>
-        </li>
-    </ol>
+## Gereksinimler
 
-    <h3>Uygulamada Bulunan Sayfalar</h3>
-    <ul>
-        <li>Hesap Yönetimi: Giriş yapma, hesap oluşturma, şifre sıfırlama.</li>
-        <li>Ürün Arama: API üzerinden ürün arama ve listeleme.</li>
-        <li>Favori Ürünler: Ürünleri favorilere ekleme ve yönetme.</li>
-        <li>Tema ve Dil Ayarları: Uygulama temasını ve dilini değiştirme.</li>
-    </ul>
+- Minimum SDK: 31 (Android 12)
+- Hedef SDK: 35 (Android 14)
+- Geliştirme Ortamı: Android Studio
 
-    <h2>Lisans</h2>
-    <p>
-        Bu proje açık kaynaklı değildir ve dış katkılara kapalıdır.
-    </p>
+## Kurulum
+
+1. Depoyu klonlayın:
+    ```bash
+    git clone https://github.com/MertRamazanEMEK/mobile-app.git
+    ```
+    veya doğrudan GitHub sayfasından zip dosyasını indirip çıkarın.
+2. Android Studio kullanarak projeyi açın.
+
+## Kullanım
+
+1. **Sanal Cihazda Çalıştırma**: Android Studio'daki bir emülatör üzerinden uygulamayı başlatabilirsiniz.
+2. **Gerçek Cihazda Çalıştırma**:
+    - Geliştirici seçeneklerini etkinleştirin.
+    - Telefonunuzu bilgisayara bağlayarak uygulamayı cihaz üzerinde çalıştırın.
+
+### Uygulamada Bulunan Sayfalar
+
+- Hesap Yönetimi: Giriş yapma, hesap oluşturma, şifre sıfırlama.
+- Ürün Arama: API üzerinden ürün arama ve listeleme.
+- Favori Ürünler: Ürünleri favorilere ekleme ve yönetme.
+- Tema ve Dil Ayarları: Uygulama temasını ve dilini değiştirme.
+
+## Lisans
+
+Bu proje açık kaynaklı değildir ve dış katkılara kapalıdır.
