@@ -37,7 +37,3 @@ Bu proje, Java ile geliştirilmiş bir mobil uygulamadır. Kullanıcılar hesap 
 - Ürün Arama: API üzerinden ürün arama ve listeleme.
 - Favori Ürünler: Ürünleri favorilere ekleme ve yönetme.
 - Tema ve Dil Ayarları: Uygulama temasını ve dilini değiştirme.
-
-## Lisans
-
-Bu proje açık kaynaklı değildir ve dış katkılara kapalıdır.
