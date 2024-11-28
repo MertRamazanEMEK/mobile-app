@@ -4,10 +4,10 @@ Bu proje, Java ile geliştirilmiş bir mobil uygulamadır. Kullanıcılar hesap 
 
 ## Uygulama Görüntüleri
 <div style="display: flex; justify-content: space-around;">
-    <img src="./images/Giris_Ekrani.jpg" width="100" alt="Giriş Ekranı">
-    <img src="./images/Urunler_Ekrani.jpg" width="100" alt="Ürün Arama Ekranı">
-    <img src="./images/Favoriler_Ekrani.jpg" width="100" alt="Favoriler Ekranı">
-    <img src="./images/Ayarlar_Ekrani.jpg" width="100" alt="Ayarlar Ekranı">
+    <img src="./images/Giris_Ekrani.jpg" width="150" alt="Giriş Ekranı">
+    <img src="./images/Urunler_Ekrani.jpg" width="150" alt="Ürün Arama Ekranı">
+    <img src="./images/Favoriler_Ekrani.jpg" width="150" alt="Favoriler Ekranı">
+    <img src="./images/Ayarlar_Ekrani.jpg" width="150" alt="Ayarlar Ekranı">
 </div>
 
 ## Özellikler
