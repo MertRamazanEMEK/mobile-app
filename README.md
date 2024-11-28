@@ -4,12 +4,11 @@ Bu proje, Java ile geliştirilmiş bir mobil uygulamadır. Kullanıcılar hesap 
 
 ## Uygulama Görüntüleri
 <div style="display: flex; justify-content: space-around;">
-    <img src="./images/Giris_Ekrani.jpg" width="300" alt="Giriş Ekranı">
-    <img src="./images/Urunler_Ekrani.jpg" width="300" alt="Ürün Arama Ekranı">
-    <img src="./images/Favoriler_Ekrani.jpg" width="300" alt="Favoriler Ekranı">
-    <img src="./images/Ayarlar_Ekrani.jpg" width="300" alt="Ayarlar Ekranı">
+    <img src="./images/Giris_Ekrani.jpg" width="100" alt="Giriş Ekranı">
+    <img src="./images/Urunler_Ekrani.jpg" width="100" alt="Ürün Arama Ekranı">
+    <img src="./images/Favoriler_Ekrani.jpg" width="100" alt="Favoriler Ekranı">
+    <img src="./images/Ayarlar_Ekrani.jpg" width="100" alt="Ayarlar Ekranı">
 </div>
-![Giriş Ekranı]() ![Ürün Ekranı]() ![Favoriler Ekranı](./images/Screenshot_2024-11-28-21-32-03-219_com.onur.fastproudsearch.jpg) ![Ayarlar Ekranı](./images/Screenshot_2024-11-28-21-32-10-291_com.onur.fastproudsearch.jpg)
 
 ## Özellikler
 
